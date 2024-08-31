@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # All Apps listed here
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'products.apps.ProductsConfig',
+    'leads.apps.LeadsConfig',
 
 ]
 
@@ -120,7 +122,7 @@ REST_FRAMEWORK = {
 
 # JWT Settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
