@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'leads.apps.LeadsConfig',
 
+    #Third Party Apps listed here
+    'drf_yasg',
+
 ]
 
 MIDDLEWARE = [

@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from accounts.serializers import UserCreateSerializer, UserLoginSerializer
+from drf_yasg.utils import swagger_auto_schema
 
 
 # Generate Token Manually
@@ -27,6 +28,7 @@ class UserRegistrations(APIView):
         with user details and creating a new user if the data is valid.
     """
 
+    @swagger_auto_schema(request_body=UserCreateSerializer)
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -42,6 +44,8 @@ class UserLoginView(APIView):
         authenticating the user, and returning a token if authentication is successful.
 
     """
+
+    @swagger_auto_schema(request_body=UserLoginSerializer)
     def post(self, request):
         """
             Args:
