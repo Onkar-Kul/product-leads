@@ -113,6 +113,8 @@ class TopTenProductsAPIView(CustomAPIViewMixin, APIView):
        filters products with at least one lead, and orders them by lead count
        in descending order, returning the top 10 products.
     """
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, *args, **kwargs):
         """
         Handles GET requests and retrieves
@@ -141,4 +143,3 @@ class BottomTenProductsAPIView(CustomAPIViewMixin, APIView):
         products = Product.objects.annotate(lead_count=Count('lead_interested_products')).order_by('lead_count')[:10]
         serializer = TopAndBottomProductSerializer(products, many=True)
         return self.create_response(data=serializer.data, message="Bottom ten products retrieved successfully")
-

@@ -60,6 +60,8 @@ class LeadProductCountView(CustomAPIViewMixin, APIView):
     interested in and returns information.
     """
 
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, *args, **kwargs):
         """
         Handles GET requests and retrieves
