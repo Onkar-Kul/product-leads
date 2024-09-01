@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+{% block main%}
+    <div class="container" style="
+    margin-top: 300px;">
+        <h1>Dashboard</h1>
+        <div class="nav">
+            <button id="view-products-btn">View Products</button>
+            <button id="create-product-btn">Create Product</button>
+        </div>
+        <div id="product-list" class="hidden">
+            <h2>Product List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="product-table-body">
+                    <!-- Products will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <div id="product-details" class="hidden">
+            <h2>Product Details</h2>
+            <div id="details-container">
+                <!-- Product details will be inserted here dynamically -->
+            </div>
+            <button id="back-to-list-btn">Back to List</button>
+        </div>
+        <div id="create-product-form" class="hidden">
+            <h2>Create Product</h2>
+            <form id="create-product">
+                <div class="form-group">
+                    <label for="name">Product Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Description:</label>
+                    <input type="text" id="description" name="description" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+                </div>
+                <button type="submit">Create Product</button>
+            </form>
+            <div id="create-message"></div>
+        </div>
+        <div id="product-details-for-update" class="hidden">
+        <h2>Update Product</h2>
+        <form id="update-product-form">
+            <div>
+                <label for="update-name">Product Name:</label>
+                <input type="text" id="update-name" name="product_name" required>
+            </div>
+            <div>
+                <label for="update-description">Description:</label>
+                <textarea id="update-description" name="description" required></textarea>
+            </div>
+            <div>
+                <label for="update-price">Price:</label>
+                <input type="number" id="update-price" name="price" required>
+            </div>
+            <button type="button" id="update-product-btn">Update Product</button>
+        </form>
+        <button id="back-to-list-btn">Back to Product List</button>
+    </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

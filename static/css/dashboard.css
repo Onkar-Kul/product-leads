@@ -1,0 +1,44 @@
+/* Add to existing styles.css */
+
+.container {
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+}
+
+.nav {
+    margin-bottom: 1em;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 0.8em;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+td button {
+    margin-right: 5px;
+}

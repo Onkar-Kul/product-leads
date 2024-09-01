@@ -42,14 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
 
     # All Apps listed here
     'accounts.apps.AccountsConfig',
     'products.apps.ProductsConfig',
     'leads.apps.LeadsConfig',
+    'user_interface.apps.UserInterfaceConfig',
 
-    #Third Party Apps listed here
+    # Third Party Apps listed here
     'drf_yasg',
 
 ]
@@ -70,7 +72,7 @@ ROOT_URLCONF = 'product_lead.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -152,7 +153,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -160,3 +160,5 @@ CORS_ALLOWED_ORIGINS = [
 
 # Added Custom user
 AUTH_USER_MODEL = "accounts.User"
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
