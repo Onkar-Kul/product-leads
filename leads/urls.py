@@ -1,13 +1,11 @@
 from django.urls import path
 
-from leads.views import LeadCreateView
+from leads.views import LeadCreateView, LeadsBetweenDatesAPIView, LeadProductCountView
 
 urlpatterns = [
     path('create/', LeadCreateView.as_view(), name='lead-creation'),
-    # path('list/', ProductListCreateAPIView.as_view(), name='product-list'),
-    # path('update/<int:pk>/', ProductRetrieveUpdateDestroyAPIView.as_view(), name='product-update'),
-    # path('retrieve/<int:pk>/', ProductRetrieveUpdateDestroyAPIView.as_view(), name='product-update'),
-    # path('delete/<int:pk>/', ProductRetrieveUpdateDestroyAPIView.as_view(), name='product-update'),
 
-
+    # Reporting APIs (Products Related)
+    path('leads-between-dates/', LeadsBetweenDatesAPIView.as_view(), name='leads-between-dates'),
+    path('products-count/', LeadProductCountView.as_view(), name='products-count'),
 ]

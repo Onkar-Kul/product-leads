@@ -1,10 +1,12 @@
+from django.db.models import Count
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from products.models import Product
-from products.serializers import ProductSerializer
+from products.serializers import ProductSerializer, TopAndBottomProductSerializer
 
 
 # Create your views here.
@@ -102,4 +104,41 @@ class ProductRetrieveUpdateDestroyAPIView(CustomAPIViewMixin, generics.RetrieveU
         self.perform_destroy(instance)
         return self.create_response(message="Product deleted successfully", status_code=status.HTTP_204_NO_CONTENT)
 
+
+class TopTenProductsAPIView(CustomAPIViewMixin, APIView):
+    """
+       API view to retrieve the top 10 products with the highest lead.
+
+       This view annotates products with the count of leads,
+       filters products with at least one lead, and orders them by lead count
+       in descending order, returning the top 10 products.
+    """
+    def get(self, request, *args, **kwargs):
+        """
+        Handles GET requests and retrieves
+        the top 10 products based on lead count.
+        """
+        products = Product.objects.annotate(
+            lead_count=Count('lead_interested_products')
+        ).filter(lead_count__gte=1).order_by('-lead_count')[:10]
+        serializer = TopAndBottomProductSerializer(products, many=True)
+        return self.create_response(data=serializer.data, message="Top ten products retrieved successfully")
+
+
+class BottomTenProductsAPIView(CustomAPIViewMixin, APIView):
+    """
+        API view to retrieve the bottom 10 products with the lowest lead.
+
+        This view annotates products with the count of leads,
+        orders them by lead count in ascending order, and returns the bottom 10 products.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        """
+         Handles GET requests and retrieves the bottom 10 products based on lead.
+        """
+        products = Product.objects.annotate(lead_count=Count('lead_interested_products')).order_by('lead_count')[:10]
+        serializer = TopAndBottomProductSerializer(products, many=True)
+        return self.create_response(data=serializer.data, message="Bottom ten products retrieved successfully")
 

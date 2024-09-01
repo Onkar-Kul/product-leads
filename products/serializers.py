@@ -14,3 +14,12 @@ class ProductSerializer(serializers.ModelSerializer):
         if value <= 0:
             raise serializers.ValidationError("Price must be greater than 0.")
         return value
+
+
+class TopAndBottomProductSerializer(serializers.ModelSerializer):
+    lead_count = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Product
+        fields = ['product_name', 'description', 'price', 'created_at', 'updated_at', 'lead_count']
+        read_only_fields = fields

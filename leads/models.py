@@ -7,6 +7,10 @@ from products.models import Product
 
 
 class Lead(models.Model):
+    """
+    Lead Model as per the given all required fields
+    To store the Lead details with interested products.
+    """
     name = models.CharField(max_length=255)
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
