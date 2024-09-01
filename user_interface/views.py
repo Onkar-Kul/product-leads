@@ -15,5 +15,9 @@ def home_page(request):
     pass
 
 
+def leadCreation(request):
+    return render(request, 'lead_creation.html')
+
+
 def dashboard(request):
     return render(request, 'dashboard.html')

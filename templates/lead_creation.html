@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/lead_creation.css' %}">
+{% endblock %}
+{% block main%}
+<div class="container" style="
+    margin-top: 300px;">
+        <h1>Create Lead</h1>
+        <form id="lead-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number">
+
+           <label for="interested_products">Interested Products:</label>
+            <select id="interested_products" name="interested_products" multiple></select>
+
+
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="response-message"></div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/lead_creation.js' %}"></script>
+{% endblock %}
