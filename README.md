@@ -1,6 +1,6 @@
 # 🛠️ Django Product and Lead Management API
 
-Welcome to the Django Product and Lead Management API project! This project includes a RESTful API for managing products and leads, with full CRUD operations, reporting, and more.
+Welcome Product Leads API project. This project includes a RESTful API for managing products and leads, with full CRUD operations, reporting, and more.
 
 ## 📋 Table of Contents
 1. [🔧 Installation](#installation)
